@@ -71,10 +71,10 @@ int main()
 
 	vector<cv::Mat> framebuf;
 
-	cv::Mat m(400, 400, CV_8UC3, cv::Scalar(0,0,255));
-	cv::Mat n(400, 400, CV_8UC3, cv::Scalar(0,255,0));
-	cv::Mat o(400, 400, CV_8UC3, cv::Scalar(255,0,0));
-	cv::Mat p(400, 400, CV_8UC3, cv::Scalar(255,255,255));
+	cv::Mat m(500, 600, CV_8UC3, cv::Scalar(0,0,255));
+	cv::Mat n(500, 600, CV_8UC3, cv::Scalar(0,255,0));
+	cv::Mat o(500, 600, CV_8UC3, cv::Scalar(255,0,0));
+	cv::Mat p(500, 600, CV_8UC3, cv::Scalar(255,255,255));
 	framebuf.push_back(m);
 	framebuf.push_back(n);
 	framebuf.push_back(o);
@@ -90,7 +90,7 @@ int main()
 	if(!cap.isOpened())
 	{
 		cout << "Unable to Open the Camera"<<endl;
-		exit -1;
+		return -1;
 	}
 
 	double width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
@@ -101,9 +101,17 @@ int main()
 	while(1) {
 
 		cap >> frame;
-		framebuf[3] = frame;
-		framebuf[4] = frame;		
-		cv:: Mat comp = makeCanvas(framebuf, 1200, 5);
+		framebuf[0] = frame;
+		framebuf[1] = frame;		
+		framebuf[2] = frame;
+		framebuf[3] = frame;		
+		framebuf[4] = frame;
+		framebuf[5] = frame;
+		framebuf[6] = frame;
+		framebuf[7] = frame;
+		framebuf[8] = frame;
+//		framebuf[4] = frame;			
+		cv:: Mat comp = makeCanvas(framebuf, 800, 3);
 
 		cv::imshow("frame", comp);
 		cv::waitKey(1);
